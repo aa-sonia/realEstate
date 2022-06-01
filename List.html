@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<!-- Code source based on https://www.w3schools.com/howto/howto_js_form_steps.asp -->
+<head>
+	<meta charset="UTF-8">
+	<title>LIST FORM</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<style>
+		* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+
+#regForm {
+  background-color: #ffffff;
+  margin: 20px auto;
+  font-family: Times New Roman;
+  padding: 30px;
+  min-width: 200px;
+}
+
+h1 {
+  text-align: center;
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Aerial;
+  border: 2px solid #DAF7A6;
+}
+input.invalid {
+  background-color: #E6B0AA  ;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+button {
+  background-color: #34495E;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 100%;
+  font-family:Tahoma;
+}
+
+button:hover {
+  opacity: 0.4;
+}
+
+#prevBtn {
+  background-color: #AAB7B8 ;
+}
+.step {
+  height: 20px;
+  width: 20px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 2;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4c93af;
+}
+
+			.buy {
+			  background-color: #f3f4f8;
+			  padding: 20px;
+			  text-align: left;
+			}
+		</style>
+</head>
+
+<body>
+	<nav class="navbar-expand-lg bg-info color sticky-top">
+		<ul class="nav justify-content-center">
+			<li class="nav-item">
+				<a class="nav-link active text-light" href="index.php">Search for a Home!</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="buyer.html">Buy</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="seller.html">Sell</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="agent.php">Find an agent</a>
+			</li>
+		</ul>
+	</nav>
+	<div class="buy">
+		<h1> Listing </h1>
+	</div>
+	<h1> Details </h1>
+	<div class="container">
+		
+		<form id="Listing" action="listings.php" method="post">
+			<div class="tab">Step 1:
+				<p></p>
+				<label for="USERID">USERID:</label>
+				<p><input placeholder="your user_id..." oninput="this.className = ''" name="UserID"></p>
+				<label for="HouseNo">HouseNo:</label>
+				<p><input placeholder="House_no..." oninput="this.className = ''" name="HouseNum"></p>
+				<label for="Address">Address:</label>
+				<p><input placeholder="Address..." oninput="this.className = ''" name="Address"></p>
+				<label for="City" oninput="this.className = ''">City:</label>
+				<select id="Cities" name="City">
+					<option value="Vancouver">Vancouver</option>
+					<option value="Surrey">Surrey</option>
+					<option value="Delta">Delta</option>
+					<option value="Langley">Langley</option>
+					<option value="Burnaby">Burnaby</option>
+					<option value="Coquitlam">Coquitlam</option>
+					<option value="Richmond">Richmond</option>
+					<option value="NewWest">New Westminster</option>
+				</select>
+				<p></p>
+				<label for="Postal Code">Postal Code:</label>
+				<p><input placeholder="Postal Code..." oninput="this.className = ''" name="PostalCode"></p>
+				<label for="HouseType" oninput="this.className = ''">HouseType:</label>
+				<select id="Types" name="HouseType">
+					<option value="Condo">Condo</option>
+					<option value="TownHouse">TownHouse</option>
+					<option value="OpenHouse">House</option>
+					<option value="Appartment">Apartment</option>
+				</select>
+
+
+			</div>
+			<div class="tab">Step2:
+				<label for="Beds">Beds:</label>
+				<p><input placeholder="No of Beds..." oninput="this.className = ''" name="Beds"></p>
+				<label for="Baths">Baths:</label>
+				<p><input placeholder="No of Baths..." oninput="this.className = ''" name="Baths"></p>
+				<label for="AskingPrice">AskingPrice:</label>
+				<p><input placeholder="AskingPrice..." oninput="this.className = ''" name="AskingPrice"></p>
+				<label for="HouseSize" oninput="this.className = ''">HouseSize:</label>
+				<p><input placeholder="House size(sqft)..." oninput="this.className = ''" name="HouseSize"></p>
+				<label for="NearByCities" oninput="this.className = ''">NearByCities:</label>
+				<select id="NearByCities" name="NearByCities">
+					<option value="New Westminister/South Van/Richmond">New Westminister/South Van/Richmond</option>
+					<option value="Delta/Surrey/Langley/Abbotsford">Delta/Surrey/Langley/Abbotsford</option>
+					<option value="North Van/West Van/Downtown Van">North Van/West Van/Downtown Van</option>
+					<option value="New Westminister/Burnaby/Coquitlam">New Westminister/Burnaby/Coquitlam</option>
+					<option value="Surrey/Langley/Abbotsford">Surrey/Langley/Abbotsford</option>
+
+				</select>
+			</div>
+			<div class="tab">Step 3:
+			<!-- Using math.rand, trying to generate a random -->
+
+				<script type="text/javascript" src="randRandomScript.js">
+				</script>
+
+				<h1>Click the button to generate a #listid.</h1>
+				<div id="number">
+					<button name="randNumberButton" onclick="randNumberScript()">Click for Number</button>
+				</div>
+				<p><input placeholder="ListId..." oninput="this.className = ''" name="listid"></p>
+				<label for="Agent" oninput="this.className = ''">Choose Agent:</label>
+				<select id="Agent" name="Agent">
+					<option value="George Ion">George Ion</option>
+					<option value="Yang Song">Yang Song</option>
+					<option value="Sumir Atwal">Sumir Atwal</option>
+					<option value="Phyllis Zhou">Phyllis Zhou</option>
+					<option value="Rahel Staeheli">Rahel Staeheli</option>
+					<option value="Maria Telfer">Maria Telfer</option>
+					<option value="Joey Dawson">Joey Dawson</option>
+					<option value="Emily Watson">Emily Watson</option>
+					<option value="George Smith">George Smith</option>
+				</select>
+			</div>
+			<div class="tab">Step 4:
+				<h3>Upload the Cover Image of your property</h3>
+				<label for="Image">Image:</label>
+				<p><input placeholder="url image of ur house.." oninput="this.className = ''" name="photo"></p>
+			</div>
+			<div style="float:right;">
+					<button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+					<button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+			</div>
+			<!-- Circles which indicates the steps of the form: -->
+			<div style="text-align:center;margin-top:40px;">
+				<span class="step"></span>
+				<span class="step"></span>
+				<span class="step"></span>
+				<span class="step"></span>
+			</div>
+		</form>
+		
+		<script>
+			var displayedTab = 0; // Current tab is set to be the first tab (0)
+			displayTab(displayedTab); // Display the current tab
+
+			function displayTab(n) {
+				var z = document.getElementsByClassName("tab");
+				z[n].style.display = "block";
+				if (n == 0) {
+					document.getElementById("prevBtn").style.display = "none";
+				} else {
+					document.getElementById("prevBtn").style.display = "inline";
+				}
+				if (n == (z.length - 1)) {
+					document.getElementById("nextBtn").innerHTML = "Submit";
+				} else {
+					document.getElementById("nextBtn").innerHTML = "Next";
+				}
+				IndicateStep(n)
+			}
+
+			function nextPrev(n) {
+				// This function will figure out which tab to display
+				var z = document.getElementsByClassName("tab");
+				if (n == 1 && !checkForm()) return false;
+				z[displayedTab].style.display = "none";
+				displayedTab = displayedTab + n;
+				if (displayedTab >= z.length) {
+					document.getElementById("Listing").submit();
+					return false;
+				}
+				displayTab(displayedTab);
+			}
+
+			function checkForm() {
+				// This function deals with validation of the form fields
+				var x, y, i, valid = true;
+				x = document.getElementsByClassName("tab");
+				y = x[displayedTab].getElementsByTagName("input");
+				for (i = 0; i < y.length; i++) {
+					if (y[i].value == "") {
+						y[i].className += " invalid";
+						valid = false;
+					}
+				}
+				// If the valid status is true, mark the step as finished and valid:
+				if (valid) {
+					document.getElementsByClassName("step")[displayedTab].className += " finish";
+				}
+				return valid;
+			}
+
+			function IndicateStep(n) {
+				// This function removes the "active" class of all steps...
+				var i, y = document.getElementsByClassName("step");
+				for (i = 0; i < y.length; i++) {
+					y[i].className = y[i].className.replace(" active", "");
+				}
+				y[n].className += " active";
+			}
+
+		</script>
+</body>
+
+</html>
